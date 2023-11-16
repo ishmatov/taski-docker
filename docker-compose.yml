@@ -12,6 +12,7 @@ services:
       - pg_data:/var/lib/postgresql/data
   backend:
     build: ./backend/
+    image: ishmatov/taski_backend
     env_file: .env
     volumes:
       - static:/backend_static
@@ -19,11 +20,13 @@ services:
   frontend:
     build: ./frontend/
     command: cp -r /app/build/. /frontend_static/
+    image: ishmatov/taski_frontend
     volumes:
       - static:/frontend_static
 
   gateway:
     build: ./gateway/
+    image: ishmatov/taski_gateway
     volumes:
       - static:/staticfiles
     ports:
